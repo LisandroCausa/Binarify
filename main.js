@@ -15,6 +15,9 @@ function convertBinaryToDecimal(binary = '0') {
 
 function convertToBinary(number = 0) {
     number = Math.abs(number);
+    if(number === 0)
+        return '0';
+        
     let maxPower2Subtractable = 0;
     for(let i = 0; i < 1024; i++)
     {
