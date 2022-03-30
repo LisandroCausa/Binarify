@@ -8,7 +8,17 @@
     <script src="./main.js" defer></script>
 </head>
 <body>
+    <select name="" id="input-select">
+        <option value="binary">Binary</option>
+        <option value="decimal">Decimal</option>
+        <option value="hex">Hexadecimal</option>
+    </select>
     <input type="text" onchange="updateResult()" id="user-input">
+    <select name="" id="output-select">
+        <option value="binary">Binary</option>
+        <option value="decimal">Decimal</option>
+        <option value="hex">Hexadecimal</option>
+    </select>
     <p id="result"></p>
 </body>
 </html>
