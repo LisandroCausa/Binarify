@@ -13,20 +13,22 @@ function convertBinaryToDecimal(binary = '0') {
     return decimal;
 }
 
-function convertToBinary(number = 0) {
+function findMaxPowerSubtractable(number, base) {
+    for(let i = 0; i < 1024; i++)
+    {
+        if(number < base**i)
+        {
+            return i - 1;
+        }
+    }
+}
+
+function convertToBinary(number) {
     number = Math.abs(number);
     if(number === 0)
         return '0';
-        
-    let maxPower2Subtractable = 0;
-    for(let i = 0; i < 1024; i++)
-    {
-        if(number < 2**i)
-        {
-            maxPower2Subtractable = i-1;
-            break;
-        }
-    }
+
+    const maxPower2Subtractable = findMaxPowerSubtractable(number, 2);
 
     let result = '';
     for(let i = maxPower2Subtractable; i >= 0; i--)
