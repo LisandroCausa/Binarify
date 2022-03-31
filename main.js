@@ -123,6 +123,11 @@ function updateResult() {
             return;
         result = Number(inputValue);
         break;
+    case 'hex':
+        if(!isHexadecimal(inputValue))
+            return;
+        result = convertHexToDecimal(inputValue);
+        break;
     }
 
     let convertedResult = result;
