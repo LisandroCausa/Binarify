@@ -13,6 +13,30 @@ function convertBinaryToDecimal(binary = '0') {
     return decimal;
 }
 
+function convertHexToDecimal(hex = '0') {
+    let decimal = 0;
+    for(let i = 0; i < hex.length; i++)
+    {
+        decimal += getHexDigitValue(hex[i]) * 16**(hex.length - i - 1);
+    }
+    return decimal;
+}
+
+function getHexDigitValue(digit) {
+    digit = digit[0];
+    digit = digit.toUpperCase();
+    switch(digit)
+    {
+    case 'A': return 10;
+    case 'B': return 11;
+    case 'C': return 12;
+    case 'D': return 13;
+    case 'E': return 14;
+    case 'F': return 15;
+    }
+    return Number(digit);
+}
+
 function findMaxPowerSubtractable(number, base) {
     for(let i = 0; i < 1024; i++)
     {
