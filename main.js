@@ -80,6 +80,31 @@ function isBinary(binary) {
     return true;
 }
 
+function isDecimal(number) {
+    if(Number.isNaN(Number(number)))
+        return false;
+
+    if(Number(number) === 0 && !number.includes('0'))
+        return false;
+
+    return true;
+}
+
+function isHexadecimal(hex) {
+    hex = hex.toUpperCase();
+    for(const digit of hex)
+    {
+        if(!isHexLetter(digit) && !isDecimal(digit))
+            return false;
+    }
+    return true;
+}
+
+function isHexLetter(digit) {
+    digit = digit.toUpperCase();
+    return digit === 'A' || digit === 'B' || digit === 'C' || digit === 'D' || digit === 'E' || digit === 'F';
+}
+
 function updateResult() {
     const inputValue = userInput.value;
     const inputSystem = inputSelect.value;
@@ -94,9 +119,9 @@ function updateResult() {
         result = convertBinaryToDecimal(inputValue);
         break;
     case 'decimal':
-        if(Number.isNaN(Number(inputValue))) 
+        if(!isDecimal(inputValue)) 
             return;
-        result = inputValue;
+        result = Number(inputValue);
         break;
     }
 
