@@ -8,13 +8,13 @@
     <script src="./main.js" defer></script>
 </head>
 <body>
-    <select name="" id="input-select">
+    <select name="" onchange="updateResult()" id="input-select">
         <option value="binary">Binary</option>
         <option value="decimal">Decimal</option>
         <option value="hex">Hexadecimal</option>
     </select>
     <input type="text" onchange="updateResult()" id="user-input">
-    <select name="" id="output-select">
+    <select name="" onchange="updateResult()" id="output-select">
         <option value="binary">Binary</option>
         <option value="decimal">Decimal</option>
         <option value="hex">Hexadecimal</option>
