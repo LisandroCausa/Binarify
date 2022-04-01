@@ -184,5 +184,5 @@ function updateResult() {
         convertedResult = convertToHex(result);
         break;
     }
-    resultText.textContent = convertedResult;
+    resultText.value = convertedResult;
 }
