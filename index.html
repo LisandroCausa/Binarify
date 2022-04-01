@@ -5,20 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Binary</title>
+    <link rel="stylesheet" href="./style.css">
     <script src="./main.js" defer></script>
 </head>
 <body>
-    <select name="" onchange="updateResult()" id="input-select">
-        <option value="binary">Binary</option>
-        <option value="decimal">Decimal</option>
-        <option value="hex">Hexadecimal</option>
-    </select>
-    <input type="text" onchange="updateResult()" id="user-input">
-    <select name="" onchange="updateResult()" id="output-select">
-        <option value="binary">Binary</option>
-        <option value="decimal">Decimal</option>
-        <option value="hex">Hexadecimal</option>
-    </select>
-    <p id="result"></p>
+    <div id="main-container">
+        <div id="input-section">
+            <select class="system-selectors" name="" onchange="updateResult()" id="input-select">
+                <option value="binary">Binary</option>
+                <option value="decimal">Decimal</option>
+                <option value="hex">Hexadecimal</option>
+            </select>
+            <input type="text" onchange="updateResult()" id="user-input">
+        </div>
+        <div id="output-section">
+            <select class="system-selectors" name="" onchange="updateResult()" id="output-select">
+                <option value="binary">Binary</option>
+                <option value="decimal">Decimal</option>
+                <option value="hex">Hexadecimal</option>
+            </select>
+            <p id="result"></p>
+        </div>
+    </div>
 </body>
 </html>
