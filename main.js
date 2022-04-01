@@ -17,12 +17,12 @@ function convertHexToDecimal(hex = '0') {
     let decimal = 0;
     for(let i = 0; i < hex.length; i++)
     {
-        decimal += getHexDigitValue(hex[i]) * 16**(hex.length - i - 1);
+        decimal += getHexValue(hex[i]) * 16**(hex.length - i - 1);
     }
     return decimal;
 }
 
-function getHexDigitValue(digit) {
+function getHexValue(digit) {
     digit = digit[0];
     digit = digit.toUpperCase();
     switch(digit)
@@ -35,6 +35,21 @@ function getHexDigitValue(digit) {
     case 'F': return 15;
     }
     return Number(digit);
+}
+
+function getHexDigit(value) {
+    if(value < 10)
+        return String(value);
+
+    switch(value)
+    {
+    case 10: return 'A';
+    case 11: return 'B';
+    case 12: return 'C';
+    case 13: return 'D';
+    case 14: return 'E';
+    }
+    return 'F';
 }
 
 function findMaxPowerSubtractable(number, base) {
@@ -67,6 +82,33 @@ function convertToBinary(number) {
         {
             result += '0';
         }
+    }
+    return result;
+}
+
+function convertToHex(number) {
+    number = Math.abs(number);
+    if(number === 0)
+        return '0';
+
+    const maxPower16Subtractable = findMaxPowerSubtractable(number, 16);
+
+    let result = '';
+    for(let i = maxPower16Subtractable; i >= 0; i--)
+    {
+        const power16 = 16**i;
+        let k;
+        for(k = 15; k > 0; k--)
+        {
+            if(k * power16 > number)
+                continue;
+            
+            number -= k * power16;
+            result += getHexDigit(k);
+            break;
+        }
+        if(k <= 0)
+            result += '0';
     }
     return result;
 }
@@ -137,6 +179,9 @@ function updateResult() {
         convertedResult = convertToBinary(result);
         break;
     case 'decimal':
+        break;
+    case 'hex':
+        convertedResult = convertToHex(result);
         break;
     }
     resultText.textContent = convertedResult;
