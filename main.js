@@ -3,6 +3,7 @@ const resultText = document.querySelector('#result');
 const inputSelect = document.querySelector('#input-select');
 const outputSelect = document.querySelector('#output-select');
 
+
 function convertBinaryToDecimal(binary = '0') {
     binary = String(binary);
     let decimal = 0;
@@ -113,6 +114,21 @@ function convertToHex(number) {
     return result;
 }
 
+function formatBinary(binary) {
+    const extraDigits = binary.length % 4;
+    if(extraDigits === 0) 
+        return binary;
+
+    const zerosToAdd = 4 - extraDigits;
+    let result = '';
+    for(let i = 0; i < zerosToAdd; i++)
+    {
+        result += '0';
+    }
+    result += binary;
+    return result;
+}
+
 function isBinary(binary) {
     for(const digit of binary)
     {
@@ -177,6 +193,7 @@ function updateResult() {
     {
     case 'binary':
         convertedResult = convertToBinary(result);
+        convertedResult = formatBinary(convertedResult);
         break;
     case 'decimal':
         break;
