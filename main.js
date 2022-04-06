@@ -34,6 +34,18 @@ function convertSignMagnitudeToDecimal(binary = '0') {
     return decimal;
 }
 
+function convertOneComplementToDecimal(binary = '0') {
+    binary = String(binary);
+    const signBit = binary[0];
+    binary = binary.substring(1);
+    if(signBit === '0')
+        return convertBinaryToDecimal(binary);
+    
+    const invertedBits = invertBits(binary);
+    const absoluteResult = convertBinaryToDecimal(invertedBits);
+    return -absoluteResult;
+}
+
 function getHexValue(digit) {
     digit = digit[0];
     digit = digit.toUpperCase();
@@ -130,6 +142,19 @@ function convertToSignMagnitude(number) {
     return signBit + convertToBinary(number);
 }
 
+function invertBits(bits) {
+    bits = String(bits);
+    let result = '';
+    for(const digit of bits)
+    {
+        if(digit === '0')
+            result += '1';
+        else
+            result += '0';
+    }
+    return result;
+}
+
 function formatBinary(binary) {
     const extraDigits = binary.length % 4;
     if(extraDigits === 0) 
@@ -220,6 +245,12 @@ function updateResult() {
             return outputError();
         
         result = convertSignMagnitudeToDecimal(inputValue);
+        break;
+    case 'one-complement':
+        if(!isBinary(inputValue))
+            return outputError();
+
+        result = convertOneComplementToDecimal(inputValue);
         break;
     }
 
