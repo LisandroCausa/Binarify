@@ -23,6 +23,17 @@ function convertHexToDecimal(hex = '0') {
     return decimal;
 }
 
+function convertSignMagnitudeToDecimal(binary = '0') {
+    binary = String(binary);
+    signBit = binary[0];
+    binary = binary.substring(1);
+    const decimal = convertBinaryToDecimal(binary);
+    if(signBit === '1')
+        return -decimal;
+    
+    return decimal;
+}
+
 function getHexValue(digit) {
     digit = digit[0];
     digit = digit.toUpperCase();
@@ -169,6 +180,12 @@ function outputError() {
 
 function updateResult() {
     const inputValue = userInput.value;
+    if(inputValue === '')
+    {
+        resultText.value = '';
+        return;
+    }
+
     const inputSystem = inputSelect.value;
     const outputSystem = outputSelect.value;
 
@@ -192,6 +209,12 @@ function updateResult() {
             return outputError();
 
         result = convertHexToDecimal(inputValue);
+        break;
+    case 'sign-magnitude':
+        if(!isBinary(inputValue))
+            return outputError();
+        
+        result = convertSignMagnitudeToDecimal(inputValue);
         break;
     }
 
