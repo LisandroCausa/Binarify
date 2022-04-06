@@ -13,10 +13,10 @@
         <div id="input-section">
             <select class="system-selectors" name="" onchange="updateResult()" id="input-select">
                 <option value="binary">Binary</option>
-                <option value="decimal">Decimal</option>
+                <option value="decimal" selected>Decimal</option>
                 <option value="hex">Hexadecimal</option>
             </select>
-            <input type="text" onchange="updateResult()" id="user-input">
+            <input class="input-fields" type="text" onchange="updateResult()" id="user-input">
         </div>
         <div id="output-section">
             <select class="system-selectors" name="" onchange="updateResult()" id="output-select">
@@ -25,7 +25,7 @@
                 <option value="hex">Hexadecimal</option>
             </select>
 
-            <input type="text" id="result" readonly>
+            <input class="input-fields" type="text" id="result" readonly>
         </div>
     </div>
 </body>
