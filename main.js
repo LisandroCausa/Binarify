@@ -25,7 +25,7 @@ function convertHexToDecimal(hex = '0') {
 
 function convertSignMagnitudeToDecimal(binary = '0') {
     binary = String(binary);
-    signBit = binary[0];
+    const signBit = binary[0];
     binary = binary.substring(1);
     const decimal = convertBinaryToDecimal(binary);
     if(signBit === '1')
