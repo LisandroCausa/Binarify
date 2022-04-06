@@ -125,6 +125,11 @@ function convertToHex(number) {
     return result;
 }
 
+function convertToSignMagnitude(number) {
+    const signBit = number < 0 ? '1' : '0';
+    return signBit + convertToBinary(number);
+}
+
 function formatBinary(binary) {
     const extraDigits = binary.length % 4;
     if(extraDigits === 0) 
@@ -229,6 +234,9 @@ function updateResult() {
         break;
     case 'hex':
         convertedResult = convertToHex(result);
+        break;
+    case 'sign-magnitude':
+        convertedResult = convertToSignMagnitude(result);
         break;
     }
     resultText.value = convertedResult;
