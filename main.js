@@ -163,27 +163,34 @@ function isHexLetter(digit) {
     return digit === 'A' || digit === 'B' || digit === 'C' || digit === 'D' || digit === 'E' || digit === 'F';
 }
 
+function outputError() {
+    resultText.value = 'Error!';
+}
+
 function updateResult() {
     const inputValue = userInput.value;
     const inputSystem = inputSelect.value;
     const outputSystem = outputSelect.value;
 
-    let result;
+    let result = '';
     switch(inputSystem)
     {
     case 'binary':
         if(!isBinary(inputValue))
-            return;
+            return outputError();
+            
         result = convertBinaryToDecimal(inputValue);
         break;
     case 'decimal':
         if(!isDecimal(inputValue)) 
-            return;
+            return outputError();
+
         result = Number(inputValue);
         break;
     case 'hex':
         if(!isHexadecimal(inputValue))
-            return;
+            return outputError();
+
         result = convertHexToDecimal(inputValue);
         break;
     }
