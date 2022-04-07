@@ -142,6 +142,16 @@ function convertToSignMagnitude(number) {
     return signBit + convertToBinary(number);
 }
 
+function convertToOneComplement(number) {
+    const binary = convertToBinary(number);
+    if(number < 0)
+    {
+        const invertedBits = invertBits(binary);
+        return "1" + invertedBits;
+    }
+    return "0" + binary;
+}
+
 function invertBits(bits) {
     bits = String(bits);
     let result = '';
@@ -268,6 +278,9 @@ function updateResult() {
         break;
     case 'sign-magnitude':
         convertedResult = convertToSignMagnitude(result);
+        break;
+    case 'one-complement':
+        convertedResult = convertToOneComplement(result);
         break;
     }
     resultText.value = convertedResult;
