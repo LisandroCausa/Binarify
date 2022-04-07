@@ -214,6 +214,55 @@ function isHexLetter(digit) {
     return digit === 'A' || digit === 'B' || digit === 'C' || digit === 'D' || digit === 'E' || digit === 'F';
 }
 
+function ADD(binary1, binary2) {
+    const lengthDiff = Math.abs(binary1.length-binary2.length);
+    if(binary1.length > binary2.length)
+    {
+        for(let i = 0; i < lengthDiff; i++)
+        {
+            binary2 = '0'.concat(binary2);
+        }
+    }
+    else
+    {
+        for(let i = 0; i < lengthDiff; i++)
+        {
+            binary1 = '0'.concat(binary1);
+        }
+    }
+    const length = binary1.length;
+    let carry = new Array(length+1);
+    let result = '';
+    for(let i = length-1; i >= 0; i--)
+    {
+        let sum = 0;
+        if(binary1[i] === '1') sum++;
+        if(binary2[i] === '1') sum++;
+        if(carry[i+1] === '1') sum++;
+
+        switch(sum)
+        {
+        case 1:
+            result = '1' + result;
+            break;
+        case 2:
+            carry[i] = '1';
+            result = '0' + result;
+            break;
+        case 3:
+            carry[i] = '1';
+            result = '1' + result;
+            break;
+        default:
+            result = '0' + result;
+        }
+    }
+    if(carry[0] === '1')
+        result = '1' + result;
+
+    return result;
+}
+
 function outputError() {
     resultText.value = 'Error!';
 }
