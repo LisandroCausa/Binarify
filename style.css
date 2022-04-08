@@ -38,7 +38,7 @@ footer {
     padding: 4px;
 }
 
-#main-container {
+.main-container {
     height: 18vh;
     width: 40vw;
     margin-bottom: 100px;
@@ -52,7 +52,7 @@ footer {
     background-color: rgba(228, 228, 228, 0.733);
 }
 
-#main-container > div {
+.main-container > div {
     display: flex;
     gap: 16px;
 }
@@ -72,7 +72,7 @@ footer {
     color: white;
 }
 
-#input-select {
+#input-select, #operator-select {
     background-color: rgb(255, 112, 112);
 }
 

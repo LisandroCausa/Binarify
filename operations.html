@@ -9,6 +9,26 @@
     <script src="./main.js" defer></script>
 </head>
 <body>
-    
+    <nav>
+        <a href="./index.html">Conversions</a>
+        <a href="#">Operations</a>
+    </nav>
+    <div class="main-container" id="main-operations">
+        <input class="input-fields" type="text" id="operand1">
+        <select class="system-selectors" name="" id="operator-select">
+            <option value="add">+ ADD</option>
+            <option value="sub">- SUB</option>
+            <option value="not">NOT</option>
+            <option value="and">AND</option>
+            <option value="or">OR</option>
+            <option value="xor">XOR</option>
+            <option value="nand">NAND</option>
+            <option value="nor">NOR</option>
+            <option value="xnor">XNOR</option>
+        </select>
+        <input class="input-fields" type="text" id="operand2">
+        <input class="input-fields" type="text" id="result" readonly>
+    </div>
+    <footer>by Lisandro Causa</footer>
 </body>
 </html>
