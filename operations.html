@@ -14,20 +14,29 @@
         <a href="#">Operations</a>
     </nav>
     <div class="main-container" id="main-operations">
-        <input class="input-fields" type="text" id="operand1">
-        <select class="system-selectors" name="" id="operator-select">
-            <option value="add">+ ADD</option>
-            <option value="sub">- SUB</option>
-            <option value="not">NOT</option>
-            <option value="and">AND</option>
-            <option value="or">OR</option>
-            <option value="xor">XOR</option>
-            <option value="nand">NAND</option>
-            <option value="nor">NOR</option>
-            <option value="xnor">XNOR</option>
-        </select>
-        <input class="input-fields" type="text" id="operand2">
-        <input class="input-fields" type="text" id="result" readonly>
+        <div>
+            <input class="input-fields" type="text" id="operand1">
+        </div>
+        <div id="operator-select-div">
+            <select name="" id="operator-select">
+                <option value="add">+ ADD</option>
+                <option value="sub">- SUB</option>
+                <option value="not">NOT</option>
+                <option value="and">AND</option>
+                <option value="or">OR</option>
+                <option value="xor">XOR</option>
+                <option value="nand">NAND</option>
+                <option value="nor">NOR</option>
+                <option value="xnor">XNOR</option>
+            </select>
+        </div>
+        <div>
+            <input class="input-fields" type="text" id="operand2">
+
+        </div>
+        <div>
+            <input class="input-fields" type="text" id="result" readonly>
+        </div>
     </div>
     <footer>by Lisandro Causa</footer>
 </body>

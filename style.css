@@ -65,7 +65,7 @@ footer {
     margin: 0;
 }
 
-.system-selectors {
+.system-selectors, #operator-select {
     font-size: 24px;
     border-radius: 10px;
     padding: 4px;
@@ -87,3 +87,20 @@ footer {
     border: 2px solid rgb(90, 90, 90);
     border-radius: 6px;
 }
+
+#main-operations {
+    height: 24vh;
+}
+
+#main-operations > div {
+    margin-left: 20%;
+}
+
+#main-operations > div > input {
+    font-size: 30px;
+}
+
+#main-operations > #operator-select-div {
+    margin: 0;
+}
+
