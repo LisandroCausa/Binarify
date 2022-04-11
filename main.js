@@ -235,7 +235,7 @@ function ADD(binary1, binary2) {
         }
     }
     const length = binary1.length;
-    let carry = new Array(length+1);
+    let carry = new Array(length + 1);
     let result = '';
     for(let i = length-1; i >= 0; i--)
     {
@@ -264,6 +264,51 @@ function ADD(binary1, binary2) {
     if(carry[0] === '1')
         result = '1' + result;
 
+    return result;
+}
+
+function SUB(binary1, binary2) {
+    const lengthDiff = Math.abs(binary1.length-binary2.length);
+    if(binary1.length > binary2.length)
+    {
+        for(let i = 0; i < lengthDiff; i++)
+        {
+            binary2 = '0'.concat(binary2);
+        }
+    }
+    else
+    {
+        for(let i = 0; i < lengthDiff; i++)
+        {
+            binary1 = '0'.concat(binary1);
+        }
+    }
+    const length = binary2.length;
+    let carry = new Array(length + 1);
+    let result = '';
+    for(let i = length-1; i >= 0; i--)
+    {
+        let sum = 0;
+        if(carry[i+1] === '1') sum--;
+        if(binary1[i] === '1') sum++;
+        if(binary2[i] === '1') sum--;
+        switch(sum)
+        {
+        case -2:
+            carry[i] = '1';
+            result = '0' + result;
+            break;
+        case -1:
+            carry[i] = '1';
+            result = '1' + result;
+            break;
+        case 0:
+            result = '0' + result;
+            break;
+        default:
+            result = '1' + result;
+        }
+    }
     return result;
 }
 
@@ -346,13 +391,15 @@ function calculateResult() { // Operations page
     if(!isBinary(firstOperand) || !isBinary(secondOperand))
         return outputError();
 
-
     let result = '';
     const operator = operatorSelect.value;
     switch(operator)
     {
     case 'add':
         result = ADD(firstOperand, secondOperand);
+        break;
+    case 'sub':
+        result = SUB(firstOperand, secondOperand);
         break;
     }
     resultText.value = result;
