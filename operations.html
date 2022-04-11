@@ -15,10 +15,10 @@
     </nav>
     <div class="main-container" id="main-operations">
         <div>
-            <input class="input-fields" type="text" id="operand1">
+            <input class="input-fields" type="text" id="first-operand" onchange="calculateResult()">
         </div>
         <div id="operator-select-div">
-            <select name="" id="operator-select">
+            <select name="" id="operator-select" onchange="calculateResult()">
                 <option value="add">+ ADD</option>
                 <option value="sub">- SUB</option>
                 <option value="not">NOT</option>
@@ -31,8 +31,7 @@
             </select>
         </div>
         <div>
-            <input class="input-fields" type="text" id="operand2">
-
+            <input class="input-fields" type="text" id="second-operand" onchange="calculateResult()">
         </div>
         <div>
             <input class="input-fields" type="text" id="result" readonly>

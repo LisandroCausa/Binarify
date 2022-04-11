@@ -3,6 +3,10 @@ const resultText = document.querySelector('#result');
 const inputSelect = document.querySelector('#input-select');
 const outputSelect = document.querySelector('#output-select');
 
+const operatorSelect = document.querySelector('#operator-select');
+const firstOperandInput = document.querySelector('#first-operand');
+const secondOperandInput = document.querySelector('#second-operand');
+
 
 function convertBinaryToDecimal(binary = '0') {
     binary = String(binary);
@@ -267,7 +271,7 @@ function outputError() {
     resultText.value = 'Error!';
 }
 
-function updateResult() {
+function updateResult() { // Conversions page (Index)
     const inputValue = userInput.value;
     if(inputValue === '')
     {
@@ -333,4 +337,23 @@ function updateResult() {
         break;
     }
     resultText.value = convertedResult;
+}
+
+function calculateResult() { // Operations page
+    const firstOperand = firstOperandInput.value;
+    const secondOperand = secondOperandInput.value;
+
+    if(!isBinary(firstOperand) || !isBinary(secondOperand))
+        return outputError();
+
+
+    let result = '';
+    const operator = operatorSelect.value;
+    switch(operator)
+    {
+    case 'add':
+        result = ADD(firstOperand, secondOperand);
+        break;
+    }
+    resultText.value = result;
 }
