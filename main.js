@@ -156,19 +156,6 @@ function convertToOneComplement(number) {
     return "0" + binary;
 }
 
-function NOT(bits) {
-    bits = String(bits);
-    let result = '';
-    for(const digit of bits)
-    {
-        if(digit === '0')
-            result += '1';
-        else
-            result += '0';
-    }
-    return result;
-}
-
 function formatBinary(binary) {
     const extraDigits = binary.length % 4;
     if(extraDigits === 0) 
@@ -312,6 +299,50 @@ function SUB(binary1, binary2) {
     return result;
 }
 
+function NOT(bits) {
+    bits = String(bits);
+    let result = '';
+    for(const digit of bits)
+    {
+        if(digit === '0')
+            result += '1';
+        else
+            result += '0';
+    }
+    return result;
+}
+
+function AND(first, second) {
+    first = (first == '1');
+    second = (second == '1');
+    return first && second ? '1' : '0';
+}
+
+function bitwiseAND(binary1, binary2) {
+    const lengthDiff = Math.abs(binary1.length-binary2.length);
+    if(binary1.length > binary2.length)
+    {
+        for(let i = 0; i < lengthDiff; i++)
+        {
+            binary2 = '0'.concat(binary2);
+        }
+    }
+    else
+    {
+        for(let i = 0; i < lengthDiff; i++)
+        {
+            binary1 = '0'.concat(binary1);
+        }
+    }
+
+    let result = '';
+    for(let i = 0; i < binary1.length; i++)
+    {
+        result += AND(binary1[i], binary2[i]);
+    }
+    return result;
+}
+
 function outputError() {
     resultText.value = 'Error!';
 }
@@ -406,6 +437,9 @@ function calculateResult() { // Operations page
             result = NOT(firstOperand);
         else
             result = NOT(secondOperand);
+        break;
+    case 'and':
+        result = bitwiseAND(firstOperand, secondOperand);
         break;
     }
     resultText.value = result;
