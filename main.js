@@ -171,6 +171,14 @@ function formatBinary(binary) {
     return result;
 }
 
+function fillBinary(binary, amount) {
+    for(let i = 0; i < amount; i++)
+    {
+        binary = '0'.concat(binary);
+    }
+    return binary;
+}
+
 function isBinary(binary) {
     for(const digit of binary)
     {
@@ -206,21 +214,9 @@ function isHexLetter(digit) {
 }
 
 function ADD(binary1, binary2) {
-    const lengthDiff = Math.abs(binary1.length-binary2.length);
-    if(binary1.length > binary2.length)
-    {
-        for(let i = 0; i < lengthDiff; i++)
-        {
-            binary2 = '0'.concat(binary2);
-        }
-    }
-    else
-    {
-        for(let i = 0; i < lengthDiff; i++)
-        {
-            binary1 = '0'.concat(binary1);
-        }
-    }
+    binary1 = fillBinary(binary1, binary2.length - binary1.length);
+    binary2 = fillBinary(binary2, binary1.length - binary2.length);
+
     const length = binary1.length;
     let carry = new Array(length + 1);
     let result = '';
@@ -255,21 +251,9 @@ function ADD(binary1, binary2) {
 }
 
 function SUB(binary1, binary2) {
-    const lengthDiff = Math.abs(binary1.length-binary2.length);
-    if(binary1.length > binary2.length)
-    {
-        for(let i = 0; i < lengthDiff; i++)
-        {
-            binary2 = '0'.concat(binary2);
-        }
-    }
-    else
-    {
-        for(let i = 0; i < lengthDiff; i++)
-        {
-            binary1 = '0'.concat(binary1);
-        }
-    }
+    binary1 = fillBinary(binary1, binary2.length - binary1.length);
+    binary2 = fillBinary(binary2, binary1.length - binary2.length);
+
     const length = binary2.length;
     let carry = new Array(length + 1);
     let result = '';
@@ -319,21 +303,8 @@ function AND(first, second) {
 }
 
 function bitwiseAND(binary1, binary2) {
-    const lengthDiff = Math.abs(binary1.length-binary2.length);
-    if(binary1.length > binary2.length)
-    {
-        for(let i = 0; i < lengthDiff; i++)
-        {
-            binary2 = '0'.concat(binary2);
-        }
-    }
-    else
-    {
-        for(let i = 0; i < lengthDiff; i++)
-        {
-            binary1 = '0'.concat(binary1);
-        }
-    }
+    binary1 = fillBinary(binary1, binary2.length - binary1.length);
+    binary2 = fillBinary(binary2, binary1.length - binary2.length);
 
     let result = '';
     for(let i = 0; i < binary1.length; i++)
