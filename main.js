@@ -314,6 +314,24 @@ function bitwiseAND(binary1, binary2) {
     return result;
 }
 
+function OR(first, second) {
+    first = (first == '1');
+    second = (second == '1');
+    return first || second ? '1' : '0';
+}
+
+function bitwiseOR(binary1, binary2) {
+    binary1 = fillBinary(binary1, binary2.length - binary1.length);
+    binary2 = fillBinary(binary2, binary1.length - binary2.length);
+
+    let result = '';
+    for(let i = 0; i < binary1.length; i++)
+    {
+        result += OR(binary1[i], binary2[i]);
+    }
+    return result;
+}
+
 function outputError() {
     resultText.value = 'Error!';
 }
@@ -411,6 +429,9 @@ function calculateResult() { // Operations page
         break;
     case 'and':
         result = bitwiseAND(firstOperand, secondOperand);
+        break;
+    case 'or':
+        result = bitwiseOR(firstOperand, secondOperand);
         break;
     }
     resultText.value = result;
