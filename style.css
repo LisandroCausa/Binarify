@@ -93,14 +93,16 @@ footer {
 }
 
 #main-operations > div {
-    margin-left: 20%;
+    margin-right: 20%;
 }
 
 #main-operations > div > input {
     font-size: 30px;
+    text-align: right;
 }
 
 #main-operations > #operator-select-div {
     margin: 0;
+    align-self: flex-end;
 }
 
