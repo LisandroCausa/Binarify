@@ -45,7 +45,7 @@ function convertOneComplementToDecimal(binary = '0') {
     if(signBit === '0')
         return convertBinaryToDecimal(binary);
     
-    const invertedBits = invertBits(binary);
+    const invertedBits = NOT(binary);
     const absoluteResult = convertBinaryToDecimal(invertedBits);
     return -absoluteResult;
 }
@@ -150,13 +150,13 @@ function convertToOneComplement(number) {
     const binary = convertToBinary(number);
     if(number < 0)
     {
-        const invertedBits = invertBits(binary);
+        const invertedBits = NOT(binary);
         return "1" + invertedBits;
     }
     return "0" + binary;
 }
 
-function invertBits(bits) {
+function NOT(bits) {
     bits = String(bits);
     let result = '';
     for(const digit of bits)
@@ -400,6 +400,12 @@ function calculateResult() { // Operations page
         break;
     case 'sub':
         result = SUB(firstOperand, secondOperand);
+        break;
+    case 'not':
+        if(firstOperand != '')
+            result = NOT(firstOperand);
+        else
+            result = NOT(secondOperand);
         break;
     }
     resultText.value = result;
