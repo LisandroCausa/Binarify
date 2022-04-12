@@ -50,6 +50,19 @@ function convertOneComplementToDecimal(binary = '0') {
     return -absoluteResult;
 }
 
+function convertTwoComplementToDecimal(binary = '0') {
+    binary = String(binary);
+    const signBit = binary[0];
+    binary = binary.substring(1);
+    if(signBit === '0')
+        return convertBinaryToDecimal(binary);
+
+    let invertedBits = NOT(binary);
+    invertedBits = ADD(invertedBits, '1');
+    const absoluteResult = convertBinaryToDecimal(invertedBits);
+    return -absoluteResult;
+}
+
 function getHexValue(digit) {
     digit = digit[0];
     digit = digit.toUpperCase();
@@ -148,12 +161,21 @@ function convertToSignMagnitude(number) {
 
 function convertToOneComplement(number) {
     const binary = convertToBinary(number);
-    if(number < 0)
-    {
-        const invertedBits = NOT(binary);
-        return "1" + invertedBits;
-    }
-    return "0" + binary;
+    if(number >= 0)
+        return "0" + binary;
+
+    const invertedBits = NOT(binary);
+    return "1" + invertedBits;
+}
+
+function convertToTwoComplement(number) {
+    const binary = convertToBinary(number);
+    if(number >= 0)
+        return '0' + binary;
+
+    let invertedBits = NOT(binary);
+    invertedBits = ADD(invertedBits, '1');
+    return '1' + invertedBits;
 }
 
 function formatBinary(binary) {
@@ -398,6 +420,12 @@ function updateResult() { // Conversions page (Index)
 
         result = convertOneComplementToDecimal(inputValue);
         break;
+    case 'two-complement':
+        if(!isBinary(inputValue))
+            return outputError();
+
+        result = convertTwoComplementToDecimal(inputValue);
+        break;
     }
 
     let convertedResult = result;
@@ -417,6 +445,9 @@ function updateResult() { // Conversions page (Index)
         break;
     case 'one-complement':
         convertedResult = convertToOneComplement(result);
+        break;
+    case 'two-complement':
+        convertedResult = convertToTwoComplement(result);
         break;
     }
     resultText.value = convertedResult;
