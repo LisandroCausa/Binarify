@@ -332,6 +332,24 @@ function bitwiseOR(binary1, binary2) {
     return result;
 }
 
+function XOR(first, second) {
+    first = (first == '1');
+    second = (second == '1');
+    return (first && !second) || (!first && second) ? '1': '0';
+}
+
+function bitwiseXOR(binary1, binary2) {
+    binary1 = fillBinary(binary1, binary2.length - binary1.length);
+    binary2 = fillBinary(binary2, binary1.length - binary2.length);
+
+    let result = '';
+    for(let i = 0; i < binary1.length; i++)
+    {
+        result += XOR(binary1[i], binary2[i]);
+    }
+    return result;
+}
+
 function outputError() {
     resultText.value = 'Error!';
 }
@@ -432,6 +450,18 @@ function calculateResult() { // Operations page
         break;
     case 'or':
         result = bitwiseOR(firstOperand, secondOperand);
+        break;
+    case 'xor':
+        result = bitwiseXOR(firstOperand, secondOperand);
+        break;
+    case 'nand':
+        result = NOT(bitwiseAND(firstOperand, secondOperand));
+        break;
+    case 'nor':
+        result = NOT(bitwiseOR(firstOperand, secondOperand));
+        break;
+    case 'xnor':
+        result = NOT(bitwiseXOR(firstOperand, secondOperand));
         break;
     }
     resultText.value = result;
