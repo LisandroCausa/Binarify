@@ -1,3 +1,7 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 body {
     background-image: url("./img/background.jpg");
     background-repeat: no-repeat;
