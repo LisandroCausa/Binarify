@@ -376,6 +376,7 @@ function outputError() {
     resultText.value = 'Error!';
 }
 
+
 function updateResult() { // Conversions page (Index)
     const inputValue = userInput.value;
     if(inputValue === '')
