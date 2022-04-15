@@ -63,6 +63,11 @@ function convertTwoComplementToDecimal(binary = '0') {
     return -absoluteResult;
 }
 
+function convertExcess2ToDecimal(binary = '0') {
+    const excess = 2**(binary.length - 1);
+    return convertBinaryToDecimal(binary) - excess;
+}
+
 function getHexValue(digit) {
     digit = digit[0];
     digit = digit.toUpperCase();
@@ -426,6 +431,12 @@ function updateResult() { // Conversions page (Index)
             return outputError();
 
         result = convertTwoComplementToDecimal(inputValue);
+        break;
+    case 'excess-2':
+        if(!isBinary(inputValue))
+            return outputError();
+
+        result = convertExcess2ToDecimal(inputValue);
         break;
     }
 
