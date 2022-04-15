@@ -183,12 +183,23 @@ function convertToTwoComplement(number) {
     return '1' + invertedBits;
 }
 
-function formatBinary(binary) {
-    const extraDigits = binary.length % 4;
+function convertToExcess2(number) {
+    let excess = 0;
+    for(let i = 8; i < 256; i+=8)
+    {
+        excess = 2**(i-1);
+        if(Math.abs(number) <= excess)
+            break;
+    }
+    return formatBinary(convertToBinary(number + excess), 8);
+}
+
+function formatBinary(binary, partsLength = 4) {
+    const extraDigits = binary.length % partsLength;
     if(extraDigits === 0) 
         return binary;
 
-    const zerosToAdd = 4 - extraDigits;
+    const zerosToAdd = partsLength - extraDigits;
     let result = '';
     for(let i = 0; i < zerosToAdd; i++)
     {
@@ -460,6 +471,9 @@ function updateResult() { // Conversions page (Index)
         break;
     case 'two-complement':
         convertedResult = convertToTwoComplement(result);
+        break;
+    case 'excess-2':
+        convertedResult = convertToExcess2(result);
         break;
     }
     resultText.value = convertedResult;
